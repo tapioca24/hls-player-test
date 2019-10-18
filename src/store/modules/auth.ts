@@ -8,13 +8,19 @@ import {
 import store from "@/store";
 import api from "@/api";
 import QBiCAPI from "@/QBiCAPI";
+import storage from "@/utils/storage";
 
 @Module({ dynamic: true, store, name: "auth", namespaced: true })
 class Auth extends VuexModule {
-  tokens: QBiCAPI.Tokens | null = null;
+  tokens: QBiCAPI.Tokens | null = storage.restoreTokens();
 
   @Mutation
   updateTokens(tokens: QBiCAPI.Tokens | null) {
+    if (tokens) {
+      storage.storeTokens(tokens);
+    } else {
+      storage.removeTokens();
+    }
     this.tokens = tokens;
   }
 
@@ -30,7 +36,7 @@ class Auth extends VuexModule {
    */
   @Action({ rawError: true, commit: "updateTokens" })
   async login(data: QBiCAPI.Login.Request) {
-    return api.login(data);
+    return await api.login(data);
   }
 
   /**
