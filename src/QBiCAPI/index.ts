@@ -160,7 +160,7 @@ class QBiCAPI {
         }
       });
       const response: QBiCAPI.GetVodStream.Response = {
-        app: res.data.liveurl.appname
+        app: res.data.vodurl.appname
       };
       return response;
     } catch (err) {
@@ -172,7 +172,7 @@ class QBiCAPI {
   async getFileList(accessToken: string, data: QBiCAPI.GetFileList.Request) {
     try {
       const res = await this._instance({
-        url: "/stream/vodurl",
+        url: "/device/filelist",
         method: "get",
         headers: {
           Authorization: `Bearer ${accessToken}`
@@ -231,6 +231,15 @@ namespace QBiCAPI {
     server: string;
   }
 
+  export interface LiveStream {
+    server: string;
+    app: string;
+  }
+
+  export interface VodStream {
+    app: string;
+  }
+
   export namespace Login {
     export interface Request {
       email: string;
@@ -261,19 +270,14 @@ namespace QBiCAPI {
     export interface Request {
       deviceid: string;
     }
-    export interface Response {
-      server: string;
-      app: string;
-    }
+    export type Response = LiveStream;
   }
 
   export namespace GetVodStream {
     export interface Request {
       deviceid: string;
     }
-    export interface Response {
-      app: string;
-    }
+    export type Response = VodStream;
   }
 
   export namespace GetFileList {

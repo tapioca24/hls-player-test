@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <button v-if="isLoggedIn" @click="logout">sign out</button>
+    <div class="btn-group" v-if="isLoggedIn">
+      <button @click="logout">sign out</button>
+      <button @click="toHome" :disabled="isHome">top</button>
+    </div>
     <router-view />
   </div>
 </template>
@@ -16,8 +19,18 @@ export default class App extends Vue {
     return authModule.isLoggedIn;
   }
 
+  get isHome() {
+    return this.$route.name === "home";
+  }
+
   async logout() {
     await authUtils.logout();
+  }
+
+  toHome() {
+    if (!this.isHome) {
+      this.$router.push({ name: "home" });
+    }
   }
 }
 </script>
@@ -29,5 +42,11 @@ export default class App extends Vue {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.btn-group {
+  button {
+    margin: 2px;
+  }
 }
 </style>

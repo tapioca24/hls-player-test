@@ -2,7 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import authModule from "@/store/modules/auth";
 
-import Home from "../views/Home.vue";
+import Home from "@/views/Home.vue";
+import Live from "@/views/Live.vue";
 import Login from "@/views/Login.vue";
 
 Vue.use(VueRouter);
@@ -12,6 +13,13 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/live/:id",
+    name: "live",
+    component: Live,
+    props: true,
     meta: { requiresAuth: true }
   },
   {

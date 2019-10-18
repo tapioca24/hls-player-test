@@ -1,31 +1,39 @@
 import { DateTime } from "luxon";
 import router from "@/router";
-import authModule from "@/store/modules/auth";
 import QBiCAPI from "@/QBiCAPI";
+import authModule from "@/store/modules/auth";
+import cameraModule from "@/store/modules/camera";
 
 const isValidToken = (tokens: QBiCAPI.Tokens) => {
   const now = DateTime.local().toMillis();
   return now < tokens.expiresIn;
 };
 
+/**
+ * アクセストークンを取得する
+ */
 const getAccessToken = async () => {
-  if (!authModule.isLoggedIn) {
-    return null;
-  }
-  const tokens = authModule.tokens!;
-  if (isValidToken(tokens)) {
-    return tokens.accessToken;
-  }
   try {
+    if (!authModule.isLoggedIn) {
+      throw new Error("Not signed in");
+    }
+    let tokens = authModule.tokens!;
+    if (isValidToken(tokens)) {
+      return tokens.accessToken;
+    }
     await authModule.refresh();
-    return authModule.tokens;
+    tokens = authModule.tokens!;
+    return tokens.accessToken;
   } catch (err) {
-    return null;
+    // 取得に失敗したらログアウトする
+    logout();
+    throw err;
   }
 };
 
 const logout = async () => {
   await authModule.logout();
+  cameraModule.clearCameras();
   router.push({ name: "login" });
 };
 
