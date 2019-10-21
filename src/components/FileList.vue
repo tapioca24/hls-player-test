@@ -1,6 +1,6 @@
 <template>
   <div class="flie-list">
-    <h1>File list</h1>
+    <h2>File list</h2>
     <p v-if="!fetched">now loading...</p>
     <ul class="list" v-if="fetched">
       <li

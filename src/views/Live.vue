@@ -1,10 +1,9 @@
 <template>
   <div class="live">
-    <h1>Live</h1>
+    <h1>Live{{ exist ? ` ${camera.name}` : "" }}</h1>
     <p v-if="!fetched">now loading...</p>
     <p v-if="notExist">camera does not exist</p>
     <div v-if="exist">
-      <p>{{ camera.serial }} - {{ camera.name }}</p>
       <FileList :camera="camera" @select="onSelectedFile" />
       <button @click="live">live</button>
     </div>
