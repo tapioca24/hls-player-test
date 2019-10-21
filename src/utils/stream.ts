@@ -27,7 +27,7 @@ interface VodSourceParams extends LiveSourceParams {
 const createLiveSource = (data: LiveSourceParams) => {
   const baseURL = createBaseURL(data.server, data.app);
   const query = createQuery(data.accessToken, data.deviceid);
-  return `${baseURL}/playlist.m3u8?${query}`;
+  return `${baseURL}/${data.deviceid}/playlist.m3u8?${query}`;
 };
 
 const createVodSource = (data: VodSourceParams) => {
