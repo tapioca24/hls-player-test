@@ -7,7 +7,10 @@
       <FileList :camera="camera" @select="onSelectedFile" />
       <button @click="live">live</button>
     </div>
-    <p v-if="source" class="source">{{ source }}</p>
+    <div v-if="source">
+      <p class="source">{{ source }}</p>
+      <VideoJS :source="source" />
+    </div>
   </div>
 </template>
 
@@ -17,12 +20,14 @@ import authUtils from "@/utils/auth";
 import streamUtils from "@/utils/stream";
 import cameraModule from "@/store/modules/camera";
 import FileList from "@/components/FileList.vue";
+import VideoJS from "@/components/VideoJS.vue";
 import QBiCAPI from "@/QBiCAPI";
 import api from "@/api";
 
 @Component({
   components: {
-    FileList
+    FileList,
+    VideoJS
   }
 })
 export default class Live extends Vue {
@@ -108,5 +113,10 @@ export default class Live extends Vue {
 <style lang="scss" scoped>
 .source {
   font-size: 10px;
+}
+
+.video-container {
+  width: 50%;
+  margin: 0 auto;
 }
 </style>
