@@ -10,6 +10,7 @@
     <div v-if="source">
       <p class="source">{{ source }}</p>
       <VideoJS :source="source" />
+      <ClapprPlayer :source="source" />
     </div>
   </div>
 </template>
@@ -21,13 +22,15 @@ import streamUtils from "@/utils/stream";
 import cameraModule from "@/store/modules/camera";
 import FileList from "@/components/FileList.vue";
 import VideoJS from "@/components/VideoJS.vue";
+import ClapprPlayer from "@/components/ClapprPlayer.vue";
 import QBiCAPI from "@/QBiCAPI";
 import api from "@/api";
 
 @Component({
   components: {
     FileList,
-    VideoJS
+    VideoJS,
+    ClapprPlayer
   }
 })
 export default class Live extends Vue {
@@ -115,7 +118,8 @@ export default class Live extends Vue {
   font-size: 10px;
 }
 
-.video-container {
+.video-container,
+.clappr-container {
   width: 50%;
   margin: 0 auto;
 }

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "clappr": "^0.3.11",
     "core-js": "^3.1.2",
     "luxon": "^1.19.3",
     "query-string": "^6.8.3",
