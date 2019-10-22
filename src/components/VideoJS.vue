@@ -1,7 +1,7 @@
 <template>
   <div class="video-container">
     <h3>video.js</h3>
-    <video ref="videoPlayer" class="video-js" autoplay muted controls></video>
+    <video ref="videoPlayer" class="video-js" autoplay controls></video>
   </div>
 </template>
 
