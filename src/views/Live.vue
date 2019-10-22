@@ -12,6 +12,7 @@
       <VideoJS :source="source" />
       <!-- <ClapprPlayer :source="source" /> -->
       <!-- <OpenPlayerJS :source="source" /> -->
+      <MediaElementJS :source="source" />
     </div>
   </div>
 </template>
@@ -25,6 +26,7 @@ import FileList from "@/components/FileList.vue";
 import VideoJS from "@/components/VideoJS.vue";
 import ClapprPlayer from "@/components/ClapprPlayer.vue";
 import OpenPlayerJS from "@/components/OpenPlayerJS.vue";
+import MediaElementJS from "@/components/MediaElementJS.vue";
 import QBiCAPI from "@/QBiCAPI";
 import api from "@/api";
 
@@ -33,7 +35,8 @@ import api from "@/api";
     FileList,
     VideoJS,
     ClapprPlayer,
-    OpenPlayerJS
+    OpenPlayerJS,
+    MediaElementJS
   }
 })
 export default class Live extends Vue {
@@ -123,7 +126,8 @@ export default class Live extends Vue {
 
 .video-container,
 .clappr-container,
-.openplayer-container {
+.openplayer-container,
+.mejs-container {
   width: 50%;
   margin: 0 auto;
 }
