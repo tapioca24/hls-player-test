@@ -10,7 +10,8 @@
     <div v-if="source">
       <p class="source">{{ source }}</p>
       <VideoJS :source="source" />
-      <ClapprPlayer :source="source" />
+      <!-- <ClapprPlayer :source="source" /> -->
+      <!-- <OpenPlayerJS :source="source" /> -->
     </div>
   </div>
 </template>
@@ -23,6 +24,7 @@ import cameraModule from "@/store/modules/camera";
 import FileList from "@/components/FileList.vue";
 import VideoJS from "@/components/VideoJS.vue";
 import ClapprPlayer from "@/components/ClapprPlayer.vue";
+import OpenPlayerJS from "@/components/OpenPlayerJS.vue";
 import QBiCAPI from "@/QBiCAPI";
 import api from "@/api";
 
@@ -30,7 +32,8 @@ import api from "@/api";
   components: {
     FileList,
     VideoJS,
-    ClapprPlayer
+    ClapprPlayer,
+    OpenPlayerJS
   }
 })
 export default class Live extends Vue {
@@ -119,7 +122,8 @@ export default class Live extends Vue {
 }
 
 .video-container,
-.clappr-container {
+.clappr-container,
+.openplayer-container {
   width: 50%;
   margin: 0 auto;
 }
