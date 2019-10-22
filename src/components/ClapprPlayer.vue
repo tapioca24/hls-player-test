@@ -36,7 +36,7 @@ export default class ClapprPlayer extends Vue {
 
   play(source: string) {
     if (this.player) {
-      this.player.load(source, "application/vnd.apple.mpegurl", true);
+      this.player.load(source, "application/x-mpegURL", true);
     }
   }
 }
