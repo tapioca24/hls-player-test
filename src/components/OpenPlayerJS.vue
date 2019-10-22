@@ -50,6 +50,7 @@ export default class OpenPlayerJS extends Vue {
     if (this.player) {
       this.player.src = source;
       this.player.load();
+      this.player.play();
     }
   }
 }
