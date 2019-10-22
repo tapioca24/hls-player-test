@@ -9,10 +9,11 @@
     </div>
     <div v-if="source">
       <p class="source">{{ source }}</p>
+      <!-- <Flowplayer :source="source" /> -->
       <VideoJS :source="source" />
       <!-- <ClapprPlayer :source="source" /> -->
       <!-- <OpenPlayerJS :source="source" /> -->
-      <MediaElementJS :source="source" />
+      <!-- <MediaElementJS :source="source" /> -->
     </div>
   </div>
 </template>
@@ -27,6 +28,7 @@ import VideoJS from "@/components/VideoJS.vue";
 import ClapprPlayer from "@/components/ClapprPlayer.vue";
 import OpenPlayerJS from "@/components/OpenPlayerJS.vue";
 import MediaElementJS from "@/components/MediaElementJS.vue";
+import Flowplayer from "@/components/Flowplayer.vue";
 import QBiCAPI from "@/QBiCAPI";
 import api from "@/api";
 
@@ -36,7 +38,8 @@ import api from "@/api";
     VideoJS,
     ClapprPlayer,
     OpenPlayerJS,
-    MediaElementJS
+    MediaElementJS,
+    Flowplayer
   }
 })
 export default class Live extends Vue {
@@ -125,6 +128,7 @@ export default class Live extends Vue {
 }
 
 .video-container,
+.flowplayer-container,
 .clappr-container,
 .openplayer-container,
 .mejs-container {
