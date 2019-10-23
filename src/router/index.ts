@@ -4,6 +4,7 @@ import authModule from "@/store/modules/auth";
 
 import Home from "@/views/Home.vue";
 import Live from "@/views/Live.vue";
+import Playlist from "@/views/Playlist.vue";
 import Login from "@/views/Login.vue";
 
 Vue.use(VueRouter);
@@ -19,6 +20,13 @@ const routes = [
     path: "/live/:id",
     name: "live",
     component: Live,
+    props: true,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/playlist/:id",
+    name: "playlist",
+    component: Playlist,
     props: true,
     meta: { requiresAuth: true }
   },

@@ -3,13 +3,12 @@
     <h1>Camera list</h1>
     <p v-if="!fetched">now loading...</p>
     <ul class="list" v-if="fetched">
-      <li
-        class="list-item"
-        v-for="camera in cameras"
-        :key="camera.serial"
-        @click="toLive(camera.deviceid)"
-      >
+      <li class="list-item" v-for="camera in cameras" :key="camera.serial">
         {{ camera.serial }} - {{ camera.name }}
+        <button class="btn" @click="toLive(camera.deviceid)">live</button>
+        <button class="btn" @click="toPlaylist(camera.deviceid)">
+          playlist
+        </button>
       </li>
     </ul>
   </div>
@@ -43,6 +42,13 @@ export default class Home extends Vue {
       params: { id }
     });
   }
+
+  toPlaylist(id: string) {
+    this.$router.push({
+      name: "playlist",
+      params: { id }
+    });
+  }
 }
 </script>
 
@@ -51,11 +57,9 @@ export default class Home extends Vue {
   margin: 0 auto;
   width: 400px;
   text-align: left;
-  .list-item {
-    cursor: pointer;
-    &:hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
+
+  .btn {
+    margin: 0 2px;
   }
 }
 </style>
